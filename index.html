@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Scan Me 😎 | Friend Test</title>
+<style>
+:root{--bg:#fff7ed;--ink:#2d174b;--pink:#ff4f9a;--orange:#ff8b35;--card:#fff}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:radial-gradient(circle at top left,#ffe0ef,transparent 42%),linear-gradient(135deg,#fff7ed,#f2e8ff);display:flex;align-items:center;justify-content:center;padding:18px}
+main{width:min(100%,520px);background:#ffffffd9;border:2px solid #fff;border-radius:28px;padding:25px;box-shadow:0 18px 60px #40205c20;text-align:center}
+.pill{display:inline-block;background:#2d174b;color:white;border-radius:999px;padding:7px 13px;font-size:12px;font-weight:800;letter-spacing:1px}
+h1{font-size:clamp(2rem,8vw,3rem);line-height:1.05;margin:16px 0 8px}p{line-height:1.5}.sub{opacity:.75;margin:0 0 22px}
+button,select{font:inherit;border:0;border-radius:16px;padding:14px 16px;font-weight:800;cursor:pointer}
+button{background:var(--pink);color:white;box-shadow:0 5px 0 #c62f70;transition:transform .12s;width:100%;margin:7px 0}
+button:active{transform:translateY(3px);box-shadow:0 2px 0 #c62f70}
+.secondary{background:#6c49c8;box-shadow:0 5px 0 #49309a}.food{background:#ff9b36;box-shadow:0 5px 0 #d46b12;color:#2d174b}
+.screen{display:none}.screen.active{display:block;animation:pop .25s ease-out}@keyframes pop{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+.emoji{font-size:3.5rem;margin:10px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row button{min-height:110px;font-size:1.1rem}.row span{display:block;font-size:2rem;margin-bottom:5px}
+select{width:100%;background:white;border:2px solid #e5d7fa;margin:8px 0;color:var(--ink)}.note{font-size:.85rem;opacity:.65;margin-top:22px}
+</style>
+</head>
+<body><main>
+<div class="pill">⚡ VERY IMPORTANT SURVEY ⚡</div>
+<section id="start" class="screen active"><h1>SCAN ME 😎</h1><p class="sub">Choose wisely. Your reputation is at stake. 😂</p><h2>Who are you?</h2><div class="row">
+<button onclick="show('teacher')"><span>🎓</span>Teacher</button>
+<button class="secondary" onclick="show('friend')"><span>🫂</span>Friend</button>
+</div></section>
+<section id="teacher" class="screen"><div class="emoji">🙏</div><h1>Greetings, Sir/Ma'am!</h1><p>Respect mode: <b>ON</b>.<br>Have a wonderful day! 🌸</p><button onclick="show('start')">⬅ Back</button></section>
+<section id="friend" class="screen"><div class="emoji">🤨</div><h1>Are you REALLY a friend?</h1><p>Prove your loyalty with one very serious decision.</p><button onclick="show('food')">I'M READY 😤</button><button class="secondary" onclick="show('start')">I need to think...</button></section>
+<section id="food" class="screen"><h1>Choose your destiny 🍽️</h1><p>There are no wrong answers.<br>(Actually, there is one.)</p><div class="row">
+<button class="food" onclick="show('chole')"><span>🍛</span>Chole Bhature</button>
+<button class="secondary" onclick="show('momos')"><span>🥟</span>Momos</button>
+</div></section>
+<section id="chole" class="screen"><div class="emoji">🎉</div><h1>FRIENDSHIP APPROVED!</h1><p>Now choose a date from <b>1–30</b> for the legendary party.</p><label for="date">Party date:</label><select id="date"></select><p id="partyline"><b>Party aapki taraf se! 😂💸</b></p><button onclick="confirmDate()">Lock the date 🔒</button><p id="result" aria-live="polite"></p></section>
+<section id="momos" class="screen"><div class="emoji">💀🥟</div><h1>Sorry, you are NOT a friend.</h1><p>Friendship status: <b>under review</b>.<br>Reason: Momos. 😭</p><button onclick="show('start')">Try again (choose wisely)</button></section>
+<p class="note">Made for fun. No data is collected or sent anywhere.</p>
+</main>
+<script>
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+const sel=document.getElementById('date');for(let i=1;i<=30;i++){let o=document.createElement('option');o.value=i;o.textContent='Date '+i;sel.appendChild(o)}
+function confirmDate(){document.getElementById('result').innerHTML='Date '+sel.value+' selected! 🗓️<br><b>Party aapki taraf se, bhai! 😂</b>'}
+</script></body></html>
